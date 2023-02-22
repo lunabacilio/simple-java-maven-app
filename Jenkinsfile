@@ -22,15 +22,12 @@ pipeline {
             }
         }
         stage('Scan') {
-            environment {
-                scannerHome = tool 'sonar-scanner'
-            }
+            //environment {
+            //    scannerHome = tool 'sonar-scanner'
+            //}
             steps{
                 withSonarQubeEnv('sonarqube') { 
-                    sh 'mvn clean verify sonar:sonar \
-                            -Dsonar.projectKey=str-test \
-                            -Dsonar.host.url=http://sonarqube:9000 \
-                            -Dsonar.login='
+                    sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=simple-java-maven-app -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=sqp_42db6d5ed10fe7c23f6c7dcd8e19a2fe585e26bc'
                 }
             }
         }
