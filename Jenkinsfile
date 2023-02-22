@@ -23,10 +23,9 @@ pipeline {
         }
         stage('Scan') {
             steps{
+                withCredentials([sonarqube-tkn(credentialsId: 'sonarqube-tkn', secretVariable: 'FILE')]){}
                 withSonarQubeEnv('sonarqube') {
-                    withCredentials([sonarqube-tkn(credentialsId: 'sonarqube-tkn', secretVariable: 'FILE')]){
                         sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=simple-java-maven-app -Dsonar.host.url=http://13.52.137.156:9000 -Dsonar.login=$FILE'
-                    } 
                 }
             }
         }
