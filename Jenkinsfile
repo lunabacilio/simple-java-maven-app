@@ -28,8 +28,8 @@ pipeline {
             steps{
                 withSonarQubeEnv('sonarqube') { 
                     sh 'mvn clean verify sonar:sonar \
-                        -Dsonar.projectKey=str
-                        -Dsonar.host.url=http://sonarqube:9000
+                        -Dsonar.projectKey=str \
+                        -Dsonar.host.url=http://sonarqube:9000 \
                         -Dsonar.login=squ_9c4f55428ecec85b21a69072cc570dbebb35a0db'
                 }
             }
