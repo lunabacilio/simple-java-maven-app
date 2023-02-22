@@ -21,6 +21,13 @@ pipeline {
                 }
             }
         }
+        stage('SonarQube analysis') {
+            steps{
+                withSonarQubeEnv('sonarq') { 
+                    sh "mvn sonar:sonar"
+                }
+            }
+        }
         stage('Deliver') { 
             steps {
                 sh './jenkins/scripts/deliver.sh' 
