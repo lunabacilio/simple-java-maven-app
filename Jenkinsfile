@@ -22,10 +22,11 @@ pipeline {
             }
         }
         stage('Scan') {
-            withCredentials([sonarqube-tkn(credentialsId: 'sonarqube-tkn', secretVariable: 'FILE')])
             steps{
-                withSonarQubeEnv('sonarqube') { 
-                    sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=simple-java-maven-app -Dsonar.host.url=http://13.52.137.156:9000 -Dsonar.login=$FILE'
+                withSonarQubeEnv('sonarqube') {
+                    withCredentials([sonarqube-tkn(credentialsId: 'sonarqube-tkn', secretVariable: 'FILE')]){
+                        sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=simple-java-maven-app -Dsonar.host.url=http://13.52.137.156:9000 -Dsonar.login=$FILE'
+                    } 
                 }
             }
         }
