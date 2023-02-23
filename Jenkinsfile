@@ -30,8 +30,8 @@ pipeline {
                 //    echo '\${FILE}'
                 //}
                 //
-                withSonarQubeEnv(credentialsId: 'sonarqube-tkn',installationName:'sonarqube') {
-                    sh 'mvn clean verify sonar:sonar'
+                withSonarQubeEnv(credentialsId: 'sonar',installationName:'sonarqube') {
+                    sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=sample-project -Dsonar.host.url=http://13.52.137.156:9000'
                 }
             }
         }
