@@ -27,7 +27,7 @@ pipeline {
                 //}
             steps{
                 withCredentials([sonarqube-tkn(credentialsId: 'sonarqube-tkn', variable: 'FILE')]){
-                    echo '$FILE'
+                    echo '${FILE}'
                 }
                 //
                 //withSonarQubeEnv('sonarqube') {
