@@ -22,14 +22,7 @@ pipeline {
             }
         }
         stage('Scan') {
-            //environment{
-                //    FILE = credentials('sonarqube-tkn')
-                //}
             steps{
-                //withCredentials([sonarqube-tkn(credentialsId: 'sonarqube-tkn', variable: 'FILE')]){
-                //    echo '\${FILE}'
-                //}
-                //
                 withSonarQubeEnv(credentialsId: 'sonar',installationName:'sonarqube') {
                     sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=sample-project -Dsonar.host.url=http://13.52.137.156:9000'
                 }
