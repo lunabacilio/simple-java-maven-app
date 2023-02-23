@@ -30,7 +30,7 @@ pipeline {
                 //    echo '\${FILE}'
                 //}
                 //
-                withSonarQubeEnv(credentialsID: 'sonarqube-tkn',installationName:'sonarqube') {
+                withSonarQubeEnv(credentialsId: 'sonarqube-tkn',installationName:'sonarqube') {
                     sh 'mvn clean verify sonar:sonar'
                 }
             }
